@@ -10,9 +10,7 @@ public class Task {
     this.done = false;
   }
 
-  Task getTask() {
-    return this;
-  }
+  Task getTask() { return this; }
 
   int getNr() {
     return nr;
@@ -36,6 +34,10 @@ public class Task {
 
   public static void addAmount() {
     Task.amount++;
+  }
+
+  public static void decreaseAmount() {
+    Task.amount--;
   }
 
   public String toString() {

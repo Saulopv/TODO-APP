@@ -16,6 +16,13 @@ public class Storage {//TODO put limit on todos!
     storage.put(task.getNr(), task.getTask());
   }
 
+  void removeTask(String str){
+    if (contains(str)) {
+      storage.remove(Integer.parseInt(str));
+      Task.decreaseAmount();
+    }
+  }
+
   Task getTask(String str){
     return storage.get(Integer.parseInt(str));
   }
@@ -48,5 +55,7 @@ public class Storage {//TODO put limit on todos!
       Task.addAmount();
     }
   }
-}
 
+
+
+}

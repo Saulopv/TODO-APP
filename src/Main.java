@@ -22,10 +22,14 @@ public class Main {
               System.out.println("Type in your new task.");
               String newTask = scanner.nextLine();
               new Storage.NewTask(newTask);
+              break;
+            case "remove":
+              String number = scanner.nextLine();
+              storage.removeTask(number);
             default:
               break;
         }
-        if(storage.contains(input)){
+          if(storage.contains(input)){
           storage.getTask(input).setDone();
         } else {
           System.out.print("Option does not exist.\n");
