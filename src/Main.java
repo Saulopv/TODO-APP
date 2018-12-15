@@ -7,17 +7,15 @@ public class Main {
     System.out.println("Welcome");
     Scanner scanner = new Scanner(System.in);
     while(true){
-      boolean shift = true;
       String input = scanner.nextLine();
-
+      System.out.print("\033[2J\033[;H");
       try{
         switch (input.toLowerCase()){
             case "quit":
               System.exit(0);
             case "new":
-              shift = false;
-              if(storage.getSize() == 2){
-                System.out.println("You have 10 todo's! Maybe you should" +
+              if(storage.getSize() == 50){
+                System.out.println("You have 50 todo's! Maybe you should" +
                         " complete some of them before adding more? ;)");
                 break;
               }
@@ -30,17 +28,9 @@ public class Main {
         if(storage.contains(input)){
           storage.getTask(input).setDone();
         } else {
-          System.out.print("Option does not exist.");
+          System.out.print("Option does not exist.\n");
         }
-      } catch (NumberFormatException e) {
-        if(shift) {
-          if(storage.getSize()>0){
-            System.out.print("You pressed the key " + "'" + input + "'\n");
-          }else{
-            System.out.print("You pressed the key " + "'" + input + "'");
-          }
-        }
-      }
+      } catch (NumberFormatException e) { }
       System.out.println(storage.toString());
     }
   }
