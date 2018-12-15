@@ -23,9 +23,28 @@ public class Main {
               String newTask = scanner.nextLine();
               new Storage.NewTask(newTask);
               break;
-            case "remove":
-              String number = scanner.nextLine();
-              storage.removeTask(number);
+            case "edit":
+              String newInput = scanner.nextLine().toLowerCase();
+              if(newInput.equals("remove") || newInput.equals("switch")){
+                if(newInput.equals("remove")){
+                  String toRemove = scanner.nextLine();
+                  storage.removeTask(toRemove);
+                }else{
+                  System.out.println("Enter first index to switch!");
+                  String first = scanner.nextLine();
+                  if(!storage.contains(first)){
+                    System.out.println("Wrong index!");
+                    break;}
+                  System.out.println("Enter second index to switch!");
+                  String second = scanner.nextLine();
+                  if(!storage.contains(second)){
+                    System.out.println("Wrong index!");
+                    break;}
+                  storage.zwitch(first, second);
+                }
+              }else{
+                break;
+              }
             default:
               break;
         }

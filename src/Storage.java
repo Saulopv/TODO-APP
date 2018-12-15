@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class Storage {//TODO put limit on todos!
+public class Storage {
   private HashMap<Integer, Task> storage;
   private static Storage singleton = new Storage();
 
@@ -35,6 +35,14 @@ public class Storage {//TODO put limit on todos!
     return storage.size();
   }
 
+  void zwitch(String str1, String str2){
+    Task task1 = storage.get(Integer.parseInt(str1));
+    Task task2 = storage.get(Integer.parseInt(str2));
+    String tmp = task1.getTodo();
+    task1.setTask(task2.getTodo());
+    task2.setTask(tmp);
+  }
+
   @Override
   public String toString() {
     String taskList = "";
@@ -55,7 +63,4 @@ public class Storage {//TODO put limit on todos!
       Task.addAmount();
     }
   }
-
-
-
 }

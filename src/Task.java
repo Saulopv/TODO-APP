@@ -10,6 +10,10 @@ public class Task {
     this.done = false;
   }
 
+  String getTodo(){
+    return this.task;
+  }
+
   Task getTask() { return this; }
 
   int getNr() {
