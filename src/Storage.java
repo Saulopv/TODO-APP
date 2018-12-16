@@ -43,6 +43,14 @@ public class Storage {
     task2.setTask(tmp);
   }
 
+  void change(Task task, String toChange){
+    task.setTask(toChange);
+  }
+
+  void reassignIndex(){//TODO first case, middle case
+
+  }
+
   @Override
   public String toString() {
     String taskList = "";
