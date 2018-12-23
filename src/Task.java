@@ -28,6 +28,10 @@ public class Task {
     this.task = task;
   }
 
+  public void setNr(int nr) {
+    this.nr = nr;
+  }
+
   void setDone() {
     if (done) {
       this.done = false;

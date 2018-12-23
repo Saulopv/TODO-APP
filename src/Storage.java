@@ -2,24 +2,39 @@ import java.util.HashMap;
 
 public class Storage {
   private HashMap<Integer, Task> storage;
-  private static Storage singleton = new Storage();
 
-  private Storage(){
+  public Storage(){
     this.storage = new HashMap<>();
   }
 
-  static Storage getInstance(){
-    return singleton;
+  public Storage(Storage another){
+    this.storage = another.storage;
+  }
+
+  Storage getStorage(){
+    return this;
+  }
+
+  void addToStorage(int nr,Task task) {
+    storage.put(nr,task.getTask());
   }
 
   void addToStorage(Task task) {
     storage.put(task.getNr(), task.getTask());
   }
 
-  void removeTask(String str){
+  void removeTask(String str) {
+    int i = Integer.parseInt(str);
     if (contains(str)) {
-      storage.remove(Integer.parseInt(str));
-      Task.decreaseAmount();
+      if(storage.size() == Integer.parseInt(str)) {
+        storage.remove(Integer.parseInt(str));
+        Task.decreaseAmount();
+      }
+      else if(storage.size() != Integer.parseInt(str) && storage.size() != 1) {
+        i++;
+        zwitch(str, Integer.toString(i));
+        removeTask(Integer.toString(i));
+      }
     }
   }
 
@@ -35,7 +50,7 @@ public class Storage {
     return storage.size();
   }
 
-  void zwitch(String str1, String str2){
+  void zwitch(String str1, String str2){//FIXME, refactor
     Task task1 = storage.get(Integer.parseInt(str1));
     Task task2 = storage.get(Integer.parseInt(str2));
     String tmp = task1.getTodo();
@@ -45,10 +60,6 @@ public class Storage {
 
   void change(Task task, String toChange){
     task.setTask(toChange);
-  }
-
-  void reassignIndex(){//TODO first case, middle case
-
   }
 
   @Override
@@ -64,11 +75,9 @@ public class Storage {
     return taskList;
   }
 
-  static class NewTask{
-    NewTask(String todo){
-      Task task = new Task(Task.getAmount(), todo);
-      singleton.addToStorage(task);
-      Task.addAmount();
-    }
+  void newTask(String todo){
+    Task task = new Task(Task.getAmount(), todo);
+    addToStorage(task);
+    Task.addAmount();
   }
 }

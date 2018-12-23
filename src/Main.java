@@ -1,14 +1,15 @@
+import java.util.EmptyStackException;
 import java.util.Scanner;
 
-public class Main {//TODO edit edit
+public class Main {
   public static void main(String[] args) {
-    Storage storage = Storage.getInstance();
+    Storage storage = new Storage();
 
     System.out.println("Welcome");
     Scanner scanner = new Scanner(System.in);
     while(true){
       String input = scanner.nextLine();
-      System.out.print("\033[2J\033[;H");
+      System.out.print("\033[2J\033[;H");//Just for the terminal
       try{
         label:
         switch (input.toLowerCase()) {
@@ -22,7 +23,7 @@ public class Main {//TODO edit edit
             }
             System.out.println("Type in your new task.");
             String newTask = scanner.nextLine();
-            new Storage.NewTask(newTask);
+            storage.newTask(newTask);
             break;
           case "edit":
             String newInput = scanner.nextLine().toLowerCase();
@@ -70,7 +71,11 @@ public class Main {//TODO edit edit
         } else {
           System.out.print("Option does not exist.\n");
         }
-      } catch (NumberFormatException e) { }
+      } catch (NumberFormatException e) {
+
+      } catch (EmptyStackException e) {
+        System.out.print("Empty stack!");
+      }
       System.out.println(storage.toString());
     }
   }
