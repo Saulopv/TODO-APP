@@ -5,14 +5,11 @@ public class Storage {
 
   public Storage(){
     this.storage = new HashMap<>();
+    Task.resetAmount();
   }
 
-  public Storage(Storage another){
-    this.storage = another.storage;
-  }
-
-  Storage getStorage(){
-    return this;
+  HashMap<Integer, Task> getStorage(){
+    return this.storage;
   }
 
   void addToStorage(int nr,Task task) {
@@ -50,7 +47,7 @@ public class Storage {
     return storage.size();
   }
 
-  void zwitch(String str1, String str2){//FIXME, refactor
+  void zwitch(String str1, String str2){
     Task task1 = storage.get(Integer.parseInt(str1));
     Task task2 = storage.get(Integer.parseInt(str2));
     String tmp = task1.getTodo();
@@ -65,7 +62,7 @@ public class Storage {
   @Override
   public String toString() {
     String taskList = "";
-    for(int i=1; i<storage.size()+1; i++){//FIXME exception maybe? or assertion
+    for(int i=1; i<storage.size()+1; i++){
       if(i == storage.size()){
         taskList += getTask(Integer.toString(i));
       }else {
@@ -75,9 +72,11 @@ public class Storage {
     return taskList;
   }
 
-  void newTask(String todo){
+  Task newTask(String todo){
     Task task = new Task(Task.getAmount(), todo);
     addToStorage(task);
     Task.addAmount();
+    return task;
   }
 }
+

@@ -40,12 +40,24 @@ public class Task {
     }
   }
 
+  void setDone(boolean bool) {
+    this.done = bool;
+  }
+
+  boolean getDone() {
+    return this.done;
+  }
+
   public static void addAmount() {
     Task.amount++;
   }
 
   public static void decreaseAmount() {
     Task.amount--;
+  }
+
+  public static void resetAmount() {
+    amount = 1;
   }
 
   public String toString() {
