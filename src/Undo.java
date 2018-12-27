@@ -18,7 +18,7 @@ public class Undo {
   }
 
   Storage popFrom() throws EmptyStackException {
-    return this.stack.pop();
+      return this.stack.pop();
   }
 
   void copyStorage(Storage prevStorage, Undo stack) {

@@ -83,7 +83,7 @@ public class Main {
       } catch (NumberFormatException e) {
 
       } catch (EmptyStackException e) {
-        System.out.print("\n");
+        storage = new Storage();
       }
       System.out.println(options);
       System.out.println(storage.toString());
